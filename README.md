@@ -1,11 +1,11 @@
 # Doxy Call Controls — Tech Test
 
-This repository contains a small monorepo built with **Turborepo** and **Next.js**, implementing a Zoom-style in-call control bar with motion, accessibility, and clean component-driven architecture. Although intentionally over-engineered for the scope of the task, the goal was to demonstrate experience in scalable frontend practices, monorepos, design systems, and motion.
+This repository contains a small monorepo built with **Turborepo** and **Next.js**, implementing a doxy.me in-call control bar with motion, accessibility, and clean component-driven architecture. Although intentionally over-engineered for the scope of the task, the goal was to demonstrate experience in scalable frontend practices, monorepos, design systems, and motion.
 
 The monorepo contains two projects:
 
 - **packages/design-system** — a mocked design system containing simple tokens and basic UI primitives to support this tech test.
-- **apps/webapp** — the actual Zoom-style control bar interface, including animated call controls (mute, camera, options menu).
+- **apps/webapp** — the actual control bar interface, including animated call controls (mute, camera, options menu).
 
 ## ▶️ Running the Repo
 
