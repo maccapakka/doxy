@@ -1,4 +1,4 @@
-# Zoom-Style Call Controls — Tech Test
+# Doxy Call Controls — Tech Test
 
 This repository contains a small monorepo built with **Turborepo** and **Next.js**, implementing a Zoom-style in-call control bar with motion, accessibility, and clean component-driven architecture. Although intentionally over-engineered for the scope of the task, the goal was to demonstrate experience in scalable frontend practices, monorepos, design systems, and motion.
 
