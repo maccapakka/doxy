@@ -1,102 +1,239 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+"use client";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { Button, Group, Text, Container } from "@doxy/design-system/components";
+import styles from "./page.module.css";
+import {
+  Chat,
+  PhoneOff,
+  Dots,
+  MeetingCameraAnimated,
+  MicrophoneAnimated,
+} from "@doxy/design-system/icons";
+import { Frame } from "@doxy/design-system/group";
+import { Icon } from "@doxy/design-system/icon";
+import { SettingsIcon } from "@doxy/design-system/icons/SettingsIcon.tsx";
+import { MicrophoneOffIcon } from "@doxy/design-system/icons/MicrophoneOffIcon.tsx";
+import { LayoutIcon } from "@doxy/design-system/icons/LayoutIcon.tsx";
+import { ReportIcon } from "@doxy/design-system/icons/ReportIcon.tsx";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
 };
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+const itemVariants = {
+  hidden: { y: 100, opacity: 0, scale: 0.8 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring" as const,
+      damping: 12,
+      stiffness: 200,
+      mass: 0.8,
+    },
+  },
+};
 
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
+const dropdownMenuVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.15,
+      ease: "easeOut" as const,
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const dropdownItemVariants = {
+  hidden: { opacity: 0, x: -8 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut" as const,
+    },
+  },
 };
 
 export default function Home() {
+  const [isCameraOn, setIsCameraOn] = useState(false);
+  const [isMicOn, setIsMicOn] = useState(false);
+
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
+      <Group
+        as={motion.div}
+        alignSelf="flex-start"
+        justifySelf="flex-start"
+        borderRadius="9999px"
+        paddingInline={4}
+        paddingBlock={2}
+        backgroundColor="black"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.6,
+          delay: 1,
+          ease: "easeOut",
+        }}
+      >
+        <Text variant="body-3" color="white">
+          Doctor McCann | Doxy.me
+        </Text>
+      </Group>
+      <Group
+        as={motion.div}
+        alignItems="flex-end"
+        justifyContent="center"
+        padding={10}
+        gap={8}
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <Button
+          as={motion.button}
+          variants={itemVariants}
+          icon={<MeetingCameraAnimated isOff={!isCameraOn} />}
+          active={isCameraOn}
+          onClick={() => setIsCameraOn(!isCameraOn)}
+          tooltip={isCameraOn ? "Turn Camera Off" : "Turn Camera On"}
         />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+        <Button
+          as={motion.button}
+          variants={itemVariants}
+          icon={<MicrophoneAnimated isOff={!isMicOn} />}
+          active={isMicOn}
+          onClick={() => setIsMicOn(!isMicOn)}
+          tooltip={isMicOn ? "Turn Microphone Off" : "Turn Microphone On"}
+        />
+        <Button
+          as={motion.button}
+          variants={itemVariants}
+          icon={<Chat />}
+          tooltip="Open Chat"
+        />
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <Button
+              as={motion.button}
+              variants={itemVariants}
+              icon={<Dots />}
+              tooltip="More Options"
             />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content
+              asChild
+              className={styles.dropdownContent}
+              sideOffset={8}
+              side="top"
+            >
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={dropdownMenuVariants}
+              >
+                <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                  <motion.div variants={dropdownItemVariants}>
+                    <Group alignItems="center" gap={3}>
+                      <Icon svg={SettingsIcon} size={4} color="neutral" />
+                      <Text variant="body-3">Settings</Text>
+                    </Group>
+                  </motion.div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                  <motion.div variants={dropdownItemVariants}>
+                    <Group alignItems="center" gap={3}>
+                      <Icon svg={MicrophoneOffIcon} size={4} color="neutral" />
+                      <Text variant="body-3">Audio Effects</Text>
+                    </Group>
+                  </motion.div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                  <motion.div variants={dropdownItemVariants}>
+                    <Group alignItems="center" gap={3}>
+                      <Icon svg={LayoutIcon} size={4} color="neutral" />
+                      <Text variant="body-3">Change Layout</Text>
+                    </Group>
+                  </motion.div>
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator className={styles.dropdownSeparator} />
+                <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                  <motion.div variants={dropdownItemVariants}>
+                    <Group alignItems="center" gap={3}>
+                      <Icon svg={ReportIcon} size={4} color="critical" />
+                      <Text variant="body-3" color="critical">
+                        Report Issue
+                      </Text>
+                    </Group>
+                  </motion.div>
+                </DropdownMenu.Item>
+              </motion.div>
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
+        <Button
+          as={motion.button}
+          variants={itemVariants}
+          color="critical"
+          icon={<PhoneOff />}
+          tooltip="End Call"
+        />
+      </Group>
+      <AnimatePresence>
+        {isCameraOn && (
+          <Frame
+            as={motion.div}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{
+              type: "spring",
+              damping: 15,
+              stiffness: 200,
+            }}
+            position="absolute"
+            bottom="48px"
+            right="48px"
+            padding={4}
+            alignItems="flex-start"
+            height="260px"
+            width="300px"
+            backgroundColor="primary"
+            backgroundImage="url('/woman-small.png')"
+            backgroundSize="cover"
+            backgroundPosition="center"
+            boxShadow="0 4px 12px rgba(0, 0, 0, 0.15)"
+            border="2px solid rgba(255, 255, 255, 0.8)"
           >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.com →
-        </a>
-      </footer>
+            <Group
+              borderRadius="9999px"
+              paddingInline={4}
+              paddingBlock={2}
+              backgroundColor="black"
+            >
+              <Text variant="body-3" color="white">
+                You
+              </Text>
+            </Group>
+          </Frame>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

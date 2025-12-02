@@ -1,0 +1,6 @@
+.root {
+  font-size: var(--_fs);
+  line-height: var(--_lh);
+  font-weight: var(--_fw);
+  color: var(--_fc);
+}

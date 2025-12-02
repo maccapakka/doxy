@@ -1,0 +1,9 @@
+{
+  "extends": "@doxy/typescript-config/react-library.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": ["src", ".storybook", "vitest.d.ts"],
+  "exclude": ["node_modules", "dist", "storybook-static"]
+}

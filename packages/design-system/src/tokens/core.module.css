@@ -1,0 +1,143 @@
+.root {
+  /* Base colors */
+  --dxy-color-primary: #65cccc;
+  --dxy-color-critical: #f33252;
+  --dxy-color-neutral: #71717a;
+  --dxy-color-white: #ffffff;
+  --dxy-color-black: #000000;
+
+  /* Color Variants */
+  --dxy-color-primary-100: color-mix(in srgb, var(--dxy-color-primary), white 90%);
+  --dxy-color-primary-200: color-mix(in srgb, var(--dxy-color-primary), white 70%);
+  --dxy-color-primary-300: color-mix(in srgb, var(--dxy-color-primary), white 50%);
+  --dxy-color-primary-400: color-mix(in srgb, var(--dxy-color-primary), white 30%);
+  --dxy-color-primary-500: var(--dxy-color-primary);
+  --dxy-color-primary-600: color-mix(in srgb, var(--dxy-color-primary), black 30%);
+  --dxy-color-primary-700: color-mix(in srgb, var(--dxy-color-primary), black 50%);
+  --dxy-color-primary-800: color-mix(in srgb, var(--dxy-color-primary), black 70%);
+  --dxy-color-primary-900: color-mix(in srgb, var(--dxy-color-primary), black 90%);
+
+  --dxy-color-critical-100: color-mix(in srgb, var(--dxy-color-critical), white 90%);
+  --dxy-color-critical-200: color-mix(in srgb, var(--dxy-color-critical), white 70%);
+  --dxy-color-critical-300: color-mix(in srgb, var(--dxy-color-critical), white 50%);
+  --dxy-color-critical-400: color-mix(in srgb, var(--dxy-color-critical), white 30%);
+  --dxy-color-critical-500: var(--dxy-color-critical);
+  --dxy-color-critical-600: color-mix(in srgb, var(--dxy-color-critical), black 30%);
+  --dxy-color-critical-700: color-mix(in srgb, var(--dxy-color-critical), black 50%);
+  --dxy-color-critical-800: color-mix(in srgb, var(--dxy-color-critical), black 70%);
+  --dxy-color-critical-900: color-mix(in srgb, var(--dxy-color-critical), black 90%);
+
+  --dxy-color-neutral-100: color-mix(in srgb, var(--dxy-color-neutral), white 90%);
+  --dxy-color-neutral-200: color-mix(in srgb, var(--dxy-color-neutral), white 70%);
+  --dxy-color-neutral-300: color-mix(in srgb, var(--dxy-color-neutral), white 50%);
+  --dxy-color-neutral-400: color-mix(in srgb, var(--dxy-color-neutral), white 30%);
+  --dxy-color-neutral-500: var(--dxy-color-neutral);
+  --dxy-color-neutral-600: color-mix(in srgb, var(--dxy-color-neutral), black 30%);
+  --dxy-color-neutral-700: color-mix(in srgb, var(--dxy-color-neutral), black 50%);
+  --dxy-color-neutral-800: color-mix(in srgb, var(--dxy-color-neutral), black 70%);
+  --dxy-color-neutral-900: color-mix(in srgb, var(--dxy-color-neutral), black 90%);
+
+  /* Functional Colors */
+  --dxy-color-foreground: var(--dxy-color-neutral-700);
+
+
+  /* Units - Fluid responsive using clamp() */
+  --dxy-unit-base: clamp(3px, 0.25vw + 2px, 4px);
+  --dxy-unit-half: calc(var(--dxy-unit-1x) / 2);
+  --dxy-unit-1x: var(--dxy-unit-base);
+  --dxy-unit-2x: clamp(6px, 0.5vw + 4px, 8px);
+  --dxy-unit-3x: clamp(9px, 0.75vw + 6px, 12px);
+  --dxy-unit-4x: clamp(12px, 1vw + 8px, 16px);
+  --dxy-unit-5x: clamp(15px, 1.25vw + 10px, 20px);
+  --dxy-unit-6x: clamp(18px, 1.5vw + 12px, 24px);
+  --dxy-unit-7x: clamp(21px, 1.75vw + 14px, 28px);
+  --dxy-unit-8x: clamp(24px, 2vw + 16px, 32px);
+
+  /* Borders */
+  --dxy-border-width: 1px;
+  --dxy-border-radius: 9999px;
+
+  /* Form Controls */
+  --dxy-form-control-height: 44px;
+  --dxy-form-control-height-large: 56px;
+
+  /* Typography */
+  /* Title scales - Large headings */
+  --dxy-font-size-title-1: clamp(2.5rem, 4vw + 1rem, 4rem);
+  --dxy-line-height-title-1: 1.1;
+  --dxy-font-weight-title-1: 700;
+
+  --dxy-font-size-title-2: clamp(2rem, 3vw + 1rem, 3rem);
+  --dxy-line-height-title-2: 1.15;
+  --dxy-font-weight-title-2: 700;
+
+  --dxy-font-size-title-3: clamp(1.75rem, 2.5vw + 0.75rem, 2.5rem);
+  --dxy-line-height-title-3: 1.2;
+  --dxy-font-weight-title-3: 600;
+
+  --dxy-font-size-title-4: clamp(1.5rem, 2vw + 0.5rem, 2rem);
+  --dxy-line-height-title-4: 1.25;
+  --dxy-font-weight-title-4: 600;
+
+  --dxy-font-size-title-5: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
+  --dxy-line-height-title-5: 1.3;
+  --dxy-font-weight-title-5: 600;
+
+  --dxy-font-size-title-6: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);
+  --dxy-line-height-title-6: 1.35;
+  --dxy-font-weight-title-6: 600;
+
+  /* Featured scales - Emphasis text */
+  --dxy-font-size-featured-1: clamp(1.5rem, 2vw + 0.5rem, 2rem);
+  --dxy-line-height-featured-1: 1.4;
+  --dxy-font-weight-featured-1: 500;
+
+  --dxy-font-size-featured-2: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
+  --dxy-line-height-featured-2: 1.45;
+  --dxy-font-weight-featured-2: 500;
+
+  --dxy-font-size-featured-3: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);
+  --dxy-line-height-featured-3: 1.5;
+  --dxy-font-weight-featured-3: 500;
+
+  /* Body scales - Regular text */
+  --dxy-font-size-body-1: clamp(1.125rem, 0.5vw + 0.875rem, 1.25rem);
+  --dxy-line-height-body-1: 1.6;
+  --dxy-font-weight-body-1: 400;
+
+  --dxy-font-size-body-2: clamp(1rem, 0.25vw + 0.875rem, 1.125rem);
+  --dxy-line-height-body-2: 1.6;
+  --dxy-font-weight-body-2: 400;
+
+  --dxy-font-size-body-3: clamp(0.875rem, 0.25vw + 0.75rem, 1rem);
+  --dxy-line-height-body-3: 1.5;
+  --dxy-font-weight-body-3: 400;
+
+  /* Caption scales - Small text */
+  --dxy-font-size-caption-1: clamp(0.75rem, 0.25vw + 0.625rem, 0.875rem);
+  --dxy-line-height-caption-1: 1.4;
+  --dxy-font-weight-caption-1: 400;
+
+  --dxy-font-size-caption-2: clamp(0.625rem, 0.25vw + 0.5rem, 0.75rem);
+  --dxy-line-height-caption-2: 1.3;
+  --dxy-font-weight-caption-2: 400;
+
+  /* Base Styles */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--dxy-font-size-body-1);
+  line-height: var(--dxy-line-height-body-1);
+  font-family: monospace;
+  font-weight: var(--dxy-font-weight-body-1);
+}
+
+.root * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--dxy-font-size-body-1);
+  line-height: var(--dxy-line-height-body-1);
+  font-family: monospace;
+  font-weight: var(--dxy-font-weight-body-1);
+}

@@ -1,0 +1,8 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--_is, 6) * var(--dxy-unit-base));
+  height: calc(var(--_is, 6) * var(--dxy-unit-base));
+  color: var(--_ic);
+}

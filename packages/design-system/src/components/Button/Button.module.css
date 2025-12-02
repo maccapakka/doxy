@@ -1,0 +1,74 @@
+.root {
+  --_btn-bg: var(--dxy-color-neutral-800);
+  --_btn-bg-hover: var(--dxy-color-neutral-900);
+  --_btn-color: var(--dxy-color-white);
+
+  background-color: var(--_btn-bg);
+  border-radius: var(--dxy-border-radius);
+  border: 0 none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--_btn-color);
+  padding: var(--dxy-unit-2x) var(--dxy-unit-3x);
+  width: var(--dxy-form-control-height-large);
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.root:hover:not(:focus) {
+  background-color: var(--_btn-bg-hover);
+}
+
+.root:focus-visible {
+  outline: 3px solid var(--dxy-color-white);
+  outline-offset: 3px;
+}
+
+.icon {
+  display: block;
+}
+
+.active {
+  --_btn-bg: var(--dxy-color-white);
+  --_btn-bg-hover: var(--dxy-color-neutral-100);
+  color: var(--dxy-color-black);
+}
+
+.critical {
+  --_btn-bg: var(--dxy-color-critical);
+  --_btn-bg-hover: var(--dxy-color-critical-600);
+}
+
+/* Tooltip styles */
+.hasTooltip {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: color-mix(in srgb, var(--dxy-color-neutral-800) 90%, transparent);
+  color: var(--dxy-color-white);
+  padding: var(--dxy-unit-2x) var(--dxy-unit-3x);
+  border-radius: 8px;
+  font-size: var(--dxy-font-size-caption-1);
+  line-height: var(--dxy-line-height-caption-1);
+  font-weight: var(--dxy-font-weight-caption-1);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+  z-index: 1000;
+}
+
+/* Show tooltip on hover and focus */
+.hasTooltip:hover .tooltip,
+.hasTooltip:focus-visible .tooltip {
+  opacity: 1;
+  visibility: visible;
+}

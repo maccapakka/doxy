@@ -1,0 +1,51 @@
+.root {
+  /* Reset custom properties to prevent inheritance */
+  --_fai: initial;
+  --_fas: initial;
+  --_fjc: initial;
+  --_fjs: initial;
+  --_fd: initial;
+  --_fg: initial;
+  --_fp: initial;
+  --_fpi: initial;
+  --_fpb: initial;
+  --_pos: initial;
+  --_top: initial;
+  --_bottom: initial;
+  --_left: initial;
+  --_right: initial;
+  --_bg: initial;
+  --_bgi: initial;
+  --_bgs: initial;
+  --_bgp: initial;
+  --_border: initial;
+  --_br: initial;
+  --_shadow: initial;
+  --_w: initial;
+  --_h: initial;
+
+  display: flex;
+  align-items: var(--_fai, stretch);
+  align-self: var(--_fas);
+  justify-content: var(--_fjc, flex-start);
+  justify-self: var(--_fjs);
+  flex-direction: var(--_fd, row);
+  gap: calc(var(--dxy-unit-base) * var(--_fg, 4));
+  padding: calc(var(--dxy-unit-base) * var(--_fp, 0));
+  padding-inline: calc(var(--dxy-unit-base) * var(--_fpi, 0));
+  padding-block: calc(var(--dxy-unit-base) * var(--_fpb, 0));
+  position: var(--_pos);
+  inset-block-start: var(--_top);
+  inset-block-end: var(--_bottom);
+  inset-inline-start: var(--_left);
+  inset-inline-end: var(--_right);
+  background-color: var(--_bg);
+  background-image: var(--_bgi);
+  background-size: var(--_bgs);
+  background-position: var(--_bgp);
+  border: var(--_border);
+  border-radius: var(--_br, 8px);
+  box-shadow: var(--_shadow);
+  width: var(--_w);
+  height: var(--_h);
+}

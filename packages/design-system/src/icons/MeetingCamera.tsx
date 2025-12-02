@@ -1,0 +1,25 @@
+interface MeetingCameraProps {
+  size?: number;
+  className?: string;
+}
+
+export const MeetingCamera = ({ size = 24, className }: MeetingCameraProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      height={size}
+      width={size}
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+    >
+      <title>Meeting Camera</title>
+      <path d="M3.75 5.261h9s3 0 3 3v7.5s0 3 -3 3h-9s-3 0 -3 -3v-7.5s0 -3 3 -3" />
+      <path d="m18.75 15.011 3.415 1.707a0.75 0.75 0 0 0 1.085 -0.671V7.974a0.749 0.749 0 0 0 -1.085 -0.67L18.75 9.011" />
+    </svg>
+  );
+};
