@@ -1,135 +1,122 @@
-# Turborepo starter
+# Zoom-Style Call Controls — Tech Test
 
-This Turborepo starter is maintained by the Turborepo core team.
+This repository contains a small monorepo built with **Turborepo** and **Next.js**, implementing a Zoom-style in-call control bar with motion, accessibility, and clean component-driven architecture. Although intentionally over-engineered for the scope of the task, the goal was to demonstrate experience in scalable frontend practices, monorepos, design systems, and motion.
 
-## Using this example
+The monorepo contains two projects:
 
-Run the following command:
+- **packages/design-system** — a mocked design system containing simple tokens and basic UI primitives to support this tech test.
+- **apps/webapp** — the actual Zoom-style control bar interface, including animated call controls (mute, camera, options menu).
 
-```sh
-npx create-turbo@latest
+## ▶️ Running the Repo
+
+```bash
+pnpm install # install dependencies
+pnpm dev # start the webapp
+pnpm storybook # start the storybook
 ```
 
-## What's inside?
+## 🎯 Objective of the Tech Test
 
-This Turborepo includes the following packages/apps:
+The brief was to create an in-call interface similar to Zoom and demonstrate:
 
-### Apps and Packages
+- Toggleable **camera** and **microphone** controls.
+- An **Options** button that reveals a context menu.
+- A sense of **“wow factor”** through smooth motion and visual delight.
+- **WCAG 2.2 AA** accessibility compliance.
+- A maintainable, quality-focused frontend approach.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@doxy/design-system`: a stub React component library shared by both `web` and `docs` applications
-- `@doxy/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@doxy/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## 🏛 Monorepo Architecture
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Although this project could have been built in a single app, Turborepo was chosen deliberately to demonstrate:
 
-### Utilities
+- Understanding of **monorepo structures**.
+- Ability to split concerns into **reusable packages**.
+- Familiarity with tooling and architecture used at scale.
 
-This Turborepo has some additional tools already setup for you:
+## 🧩 Component-Driven Development
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+A key philosophy in this project is **component-driven development**:
 
-### Build
+> “If you build the component first, you avoid monolithic components full of business logic and keep development velocity high.”
 
-To build all apps and packages, run the following command:
+State management stays intentionally light — simple `useState` is sufficient for control bar interactions.
 
-```
-cd my-turborepo
+## 🎨 Design System (Mocked)
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+The Design System includes lightweight tokens and primitives — enough for the purpose of the test, without pretending to be a full system:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+- **Tokens:**  
+  Colors, spacing, radii, typography, motion presets.
+- **Components:**  
+  Minimal primitives used by the control bar (buttons, wrappers, layout helpers, etc.).
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+A **Storybook** instance is included for browsing and testing the design system:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+`pnpm storybook`
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## 🧠 Why These Technical Choices?
 
-### Develop
+### ❌ Not Using TailwindCSS
 
-To develop all apps and packages, run the following command:
+Although Tailwind allows for extremely fast prototyping (and would have made this tech test quicker), it does not scale well in large, quality codebases. I prefer:
 
-```
-cd my-turborepo
+- cleaner code readability,
+- finer control over the UI,
+- hiding implementation complexity from engineers less familiar with CSS frameworks.
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+Therefore this project uses **CSS Modules** instead.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+---
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 🗂 Using Turborepo (Despite Overkill)
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+This demonstrates proficiency beyond motion:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+- structuring scalable codebases,
+- designing systems built for growth,
+- aligning with modern monorepo-based organisations.
 
-### Remote Caching
+---
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### 🎥 Motion with Framer Motion
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Framer Motion was chosen for **speed** within the 4-hour timebox.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+However, with more time, motion would be implemented in **pure CSS**, leveraging modern standards that now support:
 
-```
-cd my-turborepo
+- page transitions
+- layout transitions
+- enter/exit animations
+- physics-based interactions
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+…with dramatically lower browser overhead.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+---
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 🔧 Radix Primitives (Not ShadCN)
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+Radix was used sparingly to accelerate development. Radix is preferred over ShadCN because:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+- ShadCN introduces unnecessary opinions.
+- It mirrors Tailwind’s tendency toward verbosity.
+- It is great for speed, but not for the long-term maintainability of quality frontends.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+## ♿ Accessibility
 
-## Useful Links
+Everything is implemented to **WCAG 2.2 AA** standards:
 
-Learn more about the power of Turborepo:
+- focus states
+- semantic labels
+- keyboard navigation
+- ARIA where appropriate
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+Automated **a11y tests** supplement the manual implementation.
+
+## 🧪 Testing
+
+The project includes:
+
+- **Vitest** for unit testing
+- **Accessibility tests** to ensure AA compliance
+
+No heavier E2E frameworks were required for the scope of this test.
