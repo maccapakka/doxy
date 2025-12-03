@@ -20,26 +20,27 @@ import { LayoutIcon } from "@doxy/design-system/icons/LayoutIcon.tsx";
 import { ReportIcon } from "@doxy/design-system/icons/ReportIcon.tsx";
 
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, scaleX: 0.5 },
   visible: {
     opacity: 1,
+    scaleX: 1,
     transition: {
-      staggerChildren: 0.1,
+      duration: 0.4,
+      ease: [0.25, 0.1, 0.25, 1],
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 100, opacity: 0, scale: 0.8 },
+  hidden: { x: -30, opacity: 0 },
   visible: {
-    y: 0,
+    x: 0,
     opacity: 1,
-    scale: 1,
     transition: {
-      type: "spring" as const,
-      damping: 12,
-      stiffness: 200,
-      mass: 0.8,
+      duration: 0.35,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
@@ -99,101 +100,108 @@ export default function Home() {
         as={motion.div}
         alignItems="flex-end"
         justifyContent="center"
-        padding={10}
-        gap={8}
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
-        <Button
-          as={motion.button}
-          variants={itemVariants}
-          icon={<MeetingCameraAnimated isOff={!isCameraOn} />}
-          active={isCameraOn}
-          onClick={() => setIsCameraOn(!isCameraOn)}
-          tooltip={isCameraOn ? "Turn Camera Off" : "Turn Camera On"}
-        />
-        <Button
-          as={motion.button}
-          variants={itemVariants}
-          icon={<MicrophoneAnimated isOff={!isMicOn} />}
-          active={isMicOn}
-          onClick={() => setIsMicOn(!isMicOn)}
-          tooltip={isMicOn ? "Turn Microphone Off" : "Turn Microphone On"}
-        />
-        <Button
-          as={motion.button}
-          variants={itemVariants}
-          icon={<Chat />}
-          tooltip="Open Chat"
-        />
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger asChild>
-            <Button
-              as={motion.button}
-              variants={itemVariants}
-              icon={<Dots />}
-              tooltip="More Options"
-            />
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content
-              asChild
-              className={styles.dropdownContent}
-              sideOffset={8}
-              side="top"
-            >
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={dropdownMenuVariants}
+        <Group
+          className={styles.controlBar}
+          padding={2}
+          borderRadius="16px"
+          gap={2}
+        >
+          <Button
+            as={motion.button}
+            variants={itemVariants}
+            icon={<MeetingCameraAnimated isOff={!isCameraOn} />}
+            active={isCameraOn}
+            onClick={() => setIsCameraOn(!isCameraOn)}
+            tooltip={isCameraOn ? "Turn Camera Off" : "Turn Camera On"}
+          />
+          <Button
+            as={motion.button}
+            variants={itemVariants}
+            icon={<MicrophoneAnimated isOff={!isMicOn} />}
+            active={isMicOn}
+            onClick={() => setIsMicOn(!isMicOn)}
+            tooltip={isMicOn ? "Turn Microphone Off" : "Turn Microphone On"}
+          />
+          <Button
+            as={motion.button}
+            variants={itemVariants}
+            icon={<Chat />}
+            tooltip="Open Chat"
+          />
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <Button
+                as={motion.button}
+                variants={itemVariants}
+                icon={<Dots />}
+                tooltip="More Options"
+              />
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content
+                asChild
+                className={styles.dropdownContent}
+                sideOffset={8}
+                side="top"
               >
-                <DropdownMenu.Item asChild className={styles.dropdownItem}>
-                  <motion.div variants={dropdownItemVariants}>
-                    <Group alignItems="center" gap={3}>
-                      <Icon svg={SettingsIcon} size={4} color="neutral" />
-                      <Text variant="body-3">Settings</Text>
-                    </Group>
-                  </motion.div>
-                </DropdownMenu.Item>
-                <DropdownMenu.Item asChild className={styles.dropdownItem}>
-                  <motion.div variants={dropdownItemVariants}>
-                    <Group alignItems="center" gap={3}>
-                      <Icon svg={MicrophoneOffIcon} size={4} color="neutral" />
-                      <Text variant="body-3">Audio Effects</Text>
-                    </Group>
-                  </motion.div>
-                </DropdownMenu.Item>
-                <DropdownMenu.Item asChild className={styles.dropdownItem}>
-                  <motion.div variants={dropdownItemVariants}>
-                    <Group alignItems="center" gap={3}>
-                      <Icon svg={LayoutIcon} size={4} color="neutral" />
-                      <Text variant="body-3">Change Layout</Text>
-                    </Group>
-                  </motion.div>
-                </DropdownMenu.Item>
-                <DropdownMenu.Separator className={styles.dropdownSeparator} />
-                <DropdownMenu.Item asChild className={styles.dropdownItem}>
-                  <motion.div variants={dropdownItemVariants}>
-                    <Group alignItems="center" gap={3}>
-                      <Icon svg={ReportIcon} size={4} color="critical" />
-                      <Text variant="body-3" color="critical">
-                        Report Issue
-                      </Text>
-                    </Group>
-                  </motion.div>
-                </DropdownMenu.Item>
-              </motion.div>
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
-        <Button
-          as={motion.button}
-          variants={itemVariants}
-          color="critical"
-          icon={<PhoneOff />}
-          tooltip="End Call"
-        />
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={dropdownMenuVariants}
+                >
+                  <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                    <motion.div variants={dropdownItemVariants}>
+                      <Group alignItems="center" gap={3}>
+                        <Icon svg={SettingsIcon} size={4} color="white" />
+                        <Text variant="body-3">Settings</Text>
+                      </Group>
+                    </motion.div>
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                    <motion.div variants={dropdownItemVariants}>
+                      <Group alignItems="center" gap={3}>
+                        <Icon svg={MicrophoneOffIcon} size={4} color="white" />
+                        <Text variant="body-3">Audio Effects</Text>
+                      </Group>
+                    </motion.div>
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                    <motion.div variants={dropdownItemVariants}>
+                      <Group alignItems="center" gap={3}>
+                        <Icon svg={LayoutIcon} size={4} color="white" />
+                        <Text variant="body-3">Change Layout</Text>
+                      </Group>
+                    </motion.div>
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Separator
+                    className={styles.dropdownSeparator}
+                  />
+                  <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                    <motion.div variants={dropdownItemVariants}>
+                      <Group alignItems="center" gap={3}>
+                        <Icon svg={ReportIcon} size={4} color="critical" />
+                        <Text variant="body-3" color="critical">
+                          Report Issue
+                        </Text>
+                      </Group>
+                    </motion.div>
+                  </DropdownMenu.Item>
+                </motion.div>
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+          <Button
+            as={motion.button}
+            variants={itemVariants}
+            color="critical"
+            icon={<PhoneOff />}
+            tooltip="End Call"
+          />
+        </Group>
       </Group>
       <AnimatePresence>
         {isCameraOn && (

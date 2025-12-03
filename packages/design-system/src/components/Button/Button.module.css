@@ -1,5 +1,5 @@
 .root {
-  --_btn-bg: var(--dxy-color-neutral-800);
+  --_btn-bg: transparent;
   --_btn-bg-hover: var(--dxy-color-neutral-900);
   --_btn-color: var(--dxy-color-white);
 

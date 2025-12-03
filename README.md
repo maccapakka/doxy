@@ -17,7 +17,7 @@ pnpm storybook # start the storybook
 
 ## 🎯 Objective of the Tech Test
 
-The brief was to create an in-call interface similar to Zoom and demonstrate:
+The brief was to create an in-call interface similar to doxy.me:
 
 - Toggleable **camera** and **microphone** controls.
 - An **Options** button that reveals a context menu.

@@ -11,10 +11,11 @@
 
 .dropdownContent {
   min-width: 200px;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.70);
+  backdrop-filter: blur(50px);
   border-radius: var(--dxy-unit-3x);
   padding: var(--dxy-unit-2x);
+  margin-bottom: var(--dxy-unit-2x);
   box-shadow: 0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation: slideUpAndFade 200ms cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1000;
@@ -24,7 +25,7 @@
   all: unset;
   font-size: var(--dxy-font-size-body-3);
   line-height: var(--dxy-line-height-body-3);
-  color: var(--dxy-color-black);
+  color: var(--dxy-color-white);
   border-radius: var(--dxy-unit-2x);
   display: flex;
   align-items: center;
@@ -37,17 +38,22 @@
 }
 
 .dropdownItem:hover {
-  background-color: var(--dxy-color-neutral-100);
+  background-color: rgba(0, 0, 0, 0.90);
 }
 
 .dropdownItem:focus {
-  background-color: var(--dxy-color-neutral-200);
+  background-color: rgba(0, 0, 0, 0.90);
 }
 
 .dropdownSeparator {
   height: var(--dxy-border-width);
-  background-color: var(--dxy-color-neutral-200);
+  background-color: var(--dxy-color-neutral-600);
   margin: var(--dxy-unit-2x) 0;
+}
+
+.controlBar {
+  background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(50px);
 }
 
 @keyframes slideUpAndFade {
