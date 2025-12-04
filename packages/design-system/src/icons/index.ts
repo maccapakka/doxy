@@ -6,4 +6,6 @@ export { MeetingCameraOff } from "./MeetingCameraOff";
 export { Microphone } from "./Microphone";
 export { MicrophoneAnimated } from "./MicrophoneAnimated";
 export { MicrophoneOff } from "./MicrophoneOff";
+export { PhoneIcon } from "./PhoneIcon";
+export { PhoneIcon as Phone } from "./PhoneIcon";
 export { PhoneOff } from "./PhoneOff";

@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { Button, Group, Text, Container } from "@doxy/design-system/components";
+import { Button, Group, Text } from "@doxy/design-system/components";
 import styles from "./page.module.css";
 import {
   Chat,
-  PhoneOff,
   Dots,
   MeetingCameraAnimated,
   MicrophoneAnimated,
+  Phone,
 } from "@doxy/design-system/icons";
 import { Frame } from "@doxy/design-system/group";
 import { Icon } from "@doxy/design-system/icon";
@@ -73,6 +73,7 @@ const dropdownItemVariants = {
 export default function Home() {
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [isMicOn, setIsMicOn] = useState(false);
+  const [isPhoneHovered, setIsPhoneHovered] = useState(false);
 
   return (
     <div className={styles.page}>
@@ -197,8 +198,41 @@ export default function Home() {
           <Button
             as={motion.button}
             variants={itemVariants}
+            whileTap={{
+              scale: 0.85,
+              transition: {
+                duration: 0.4,
+                ease: "easeInOut",
+              },
+            }}
+            whileHover={{
+              scale: 1.05,
+              transition: {
+                duration: 0.2,
+              },
+            }}
+            onMouseEnter={() => setIsPhoneHovered(true)}
+            onMouseLeave={() => setIsPhoneHovered(false)}
             color="critical"
-            icon={<PhoneOff />}
+            icon={
+              <motion.div
+                style={{ display: "inline-flex" }}
+                animate={
+                  isPhoneHovered
+                    ? {
+                        rotate: [0, -15, 15, -15, 15, -10, 10, 0],
+                        transition: {
+                          duration: 0.5,
+                          repeat: Infinity,
+                          repeatDelay: 0.1,
+                        },
+                      }
+                    : { rotate: 0 }
+                }
+              >
+                <Phone />
+              </motion.div>
+            }
             tooltip="End Call"
           />
         </Group>
